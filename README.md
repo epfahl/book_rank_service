@@ -1,21 +1,17 @@
 # BookRankService
 
-**TODO: Add description**
+## ToDo
 
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `book_rank_service` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:book_rank_service, "~> 0.1.0"}
-  ]
-end
-```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/book_rank_service](https://hexdocs.pm/book_rank_service).
-
+* Accept a JSON POST of a list of ASINs.
+* Async processes each ASIN (Task?).
+    * See [this](http://www.simon-neutert.de/2017/async-http-requests-elixir/).
+* Get other metadata for book per ASIN:
+    * title
+    * author
+    * cover image url
+* Compile rank regex?
+* Figure out why return so slow:
+    * slow HTTP request for HTML?
+    * large HTML file?
+    * slow parsing/scraping?
+* Localize time to eastern.

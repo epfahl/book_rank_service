@@ -13,7 +13,7 @@ defmodule BookRankService.Scraper do
     asin
     |> get_html_by_asin()
     |> get_info_from_html()
-    |> Map.put("asin", asin)
+    |> Map.merge(%{"asin" => asin, "time" => get_utc_string()})
   end
 
   defp get_html_by_asin(asin) do
@@ -50,5 +50,10 @@ defmodule BookRankService.Scraper do
     asin
     |> (&Code.eval_string(@url_base, asin: &1)).()
     |> elem(0)
+  end
+
+  defp get_utc_string() do
+    DateTime.utc_now()
+    |> DateTime.to_string()
   end
 end

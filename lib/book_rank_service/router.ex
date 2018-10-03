@@ -16,22 +16,13 @@ defmodule BookRankService.Router do
     send_resp(conn, 200, "Nothing to see here. Try calling /rank/:asin.")
   end
 
-  post "/test" do
-    IO.inspect(conn.body_params)
-    result = pmap(conn.body_params["_json"], &String.capitalize/1)
-    send_resp(conn, 200, Poison.encode!(result))
-  end
-
   post "/ranks" do
-    IO.inspect(conn.body_params)
-    result = conn.body_params["_json"] |> pmap(&get_asin_info/1)
-    send_resp(conn, 200, result)
-    # send_resp(conn, 200, Poison.encode!(result))
-  end
+    result =
+      conn.body_params["_json"]
+      |> pmap(&get_asin_info/1)
+      |> Poison.encode!()
 
-  get "/rank/:asin" do
-    info = get_asin_info(asin)
-    send_resp(conn, 200, info)
+    send_resp(conn, 200, result)
   end
 
   match _ do
@@ -41,11 +32,6 @@ defmodule BookRankService.Router do
   defp get_asin_info(asin) do
     asin
     |> Scraper.scrape_info()
-    |> Poison.encode!()
-  end
-
-  defp capitalize(strings) do
-    pmap(strings, &String.capitalize/1)
   end
 
   def pmap(collection, func) do

@@ -2,9 +2,6 @@
 
 ## ToDo
 
-* Accept a JSON POST of a list of ASINs.
-* Async processes each ASIN (Task?).
-    * See [this](http://www.simon-neutert.de/2017/async-http-requests-elixir/).
 * Get other metadata for book per ASIN:
     * title
     * author

@@ -22,8 +22,8 @@ defmodule BookRankService.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:plug, "~> 1.6"},
-      {:cowboy, "~> 2.4"},
+      {:plug, "== 1.6.4"},
+      {:cowboy, "== 2.5.0"},
       {:httpoison, "~> 1.3"},
       {:floki, "~> 0.20.4"},
       {:poison, "~> 4.0"}

@@ -10,16 +10,26 @@ defmodule BookRankService.Scraper do
   %{"asin" => ASIN, "rank" => 123, "free" => false}
   """
   def scrape_info(asin) do
-    asin
-    |> get_html_by_asin()
-    |> get_info_from_html()
-    |> Map.merge(%{"asin" => asin, "time" => get_utc_string()})
+    html = get_html_by_asin(asin)
+
+    info =
+      html
+      |> get_info_from_html()
+      |> Map.merge(%{"asin" => asin, "time" => get_utc_string()})
+
+    # html |> get_meta() |> IO.inspect()
+
+    info
   end
 
   defp get_html_by_asin(asin) do
     asin
     |> get_url_by_asin()
     |> get_html()
+  end
+
+  defp get_meta(html) do
+    Floki.find(html, "meta")
   end
 
   defp get_info_from_html(html) do

@@ -26,7 +26,8 @@ defmodule BookRankService.MixProject do
       {:cowboy, "== 2.5.0"},
       {:httpoison, "~> 1.3"},
       {:floki, "~> 0.20.4"},
-      {:poison, "~> 4.0"}
+      {:poison, "~> 4.0"},
+      {:cors_plug, "~> 1.5"}
     ]
   end
 end
